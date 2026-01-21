@@ -1,0 +1,53 @@
+/* Shared scoped styles for Knowledge Garden Web Dashboard */
+/* All classes prefixed with .kg- to avoid conflicts */
+
+/* Common utilities */
+.kg-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Animation utilities */
+.kg-fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Code block styling (for dynamic content) */
+.kg-code-inline {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    font-size: 0.9em;
+}
+
+/* Style switcher (shared across all pages) */
+.kg-style-switcher {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+    .kg-mobile-hide {
+        display: none;
+    }
+
+    .kg-mobile-center {
+        text-align: center;
+    }
+}

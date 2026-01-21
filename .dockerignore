@@ -1,0 +1,49 @@
+# Git files
+.git
+.gitignore
+.github
+
+# Documentation
+README.md
+*.md
+!go.mod
+
+# Environment files
+.env
+.env.*
+*.env
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+dashboard
+dashboard-*
+*.test
+*.out
+
+# Go files
+go.work
+go.work.sum
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

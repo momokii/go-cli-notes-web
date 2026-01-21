@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Garden CLI - Terminal-Based Knowledge Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style scoped>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        code, pre, .mono {
+            font-family: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
+        }
+
+        .kg-terminal {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 1rem;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .kg-terminal-header {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .kg-terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .kg-code-green { color: #7ee787; }
+        .kg-code-blue { color: #79c0ff; }
+        .kg-code-purple { color: #d2a8ff; }
+        .kg-code-gray { color: #8b949e; }
+        .kg-code-yellow { color: #ffa657; }
+
+        .kg-feature-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            transition: all 0.2s ease;
+        }
+
+        .kg-feature-card:hover {
+            border-color: #58a6ff;
+        }
+
+        .kg-glow-blue {
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+        }
+
+        .kg-header-glow {
+            background: radial-gradient(ellipse at top, rgba(88, 166, 255, 0.15) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body class="bg-[#0d1117] text-gray-200">
+    <!-- Header -->
+    <header class="border-b border-[#30363d]">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-[#58a6ff]" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <div>
+                    <div class="font-semibold mono text-sm">kg-cli</div>
+                    <div class="text-xs text-gray-500">Knowledge Garden</div>
+                </div>
+            </div>
+            <nav class="flex items-center gap-6 text-sm mono">
+                <a href="#features" class="text-gray-400 hover:text-[#58a6ff]">Features</a>
+                <a href="#install" class="text-gray-400 hover:text-[#58a6ff]">Install</a>
+                <a href="https://github.com/momokii/go-cli-notes" target="_blank" class="text-gray-400 hover:text-[#58a6ff]">GitHub</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero with Glow -->
+    <section class="kg-header-glow py-24">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="inline-block px-3 py-1 bg-[#238636] text-[#3fb950] rounded-full text-xs font-medium mono mb-6 border border-[#238636]">
+                v1.0.0 &bull; MIT License &bull; Go
+            </div>
+            <h1 class="text-4xl md:text-5xl font-semibold mb-6 tracking-tight">
+                <span class="text-white">Knowledge Garden CLI</span>
+            </h1>
+            <p class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed mono">
+                <span class="text-[#58a6ff]">$</span> Terminal-based PKM for developers<br>
+                <span class="text-gray-500">Capture, link, and access knowledge from any machine</span>
+            </p>
+            <div class="flex items-center justify-center gap-4">
+                <a href="#install" class="px-6 py-2.5 bg-[#238636] text-white rounded-md font-medium mono text-sm hover:bg-[#2ea043] transition kg-glow-blue">
+                    git clone &amp; install
+                </a>
+                <a href="https://cli-notes-api.kelanach.xyz/" class="px-6 py-2.5 border border-[#30363d] text-[#58a6ff] rounded-md font-medium mono text-sm hover:border-[#58a6ff] transition">
+                    npm start cloud
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="max-w-6xl mx-auto px-6 py-24">
+        <div class="border-l-2 border-[#30363d] pl-4 mb-12">
+            <h2 class="text-2xl font-semibold mb-2 text-white">Features</h2>
+            <p class="text-gray-500 mono text-sm">Built for developers who live in the terminal</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <!-- Feature 1 -->
+            <div class="kg-feature-card p-6 rounded-lg">
+                <code class="text-[#ffa657] text-sm">func anywhere()</code>
+                <h3 class="text-lg font-semibold mt-3 mb-2 text-white">Works Anywhere</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">SSH into remote servers and capture notes. Your knowledge base follows you everywhere—no GUI required.</p>
+                <div class="mt-4 kg-terminal text-xs">
+                    <div class="kg-terminal-header">
+                        <div class="kg-terminal-dot bg-red-500"></div>
+                        <div class="kg-terminal-dot bg-yellow-500"></div>
+                        <div class="kg-terminal-dot bg-green-500"></div>
+                    </div>
+                    <span class="kg-code-green">$</span> <span class="text-gray-300">ssh server@prod</span><br>
+                    <span class="kg-code-green">$</span> <span class="text-gray-300">kg note create --title "Bug fix"</span>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="kg-feature-card p-6 rounded-lg">
+                <code class="text-[#ffa657] text-sm">func search(query)</code>
+                <h3 class="text-lg font-semibold mt-3 mb-2 text-white">Full-Text Search</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">PostgreSQL FTS with tsvector. Type tolerance, ranking, instant results across thousands of notes.</p>
+                <div class="mt-4 kg-terminal text-xs">
+                    <div class="kg-terminal-header">
+                        <div class="kg-terminal-dot bg-red-500"></div>
+                        <div class="kg-terminal-dot bg-yellow-500"></div>
+                        <div class="kg-terminal-dot bg-green-500"></div>
+                    </div>
+                    <span class="kg-code-green">$</span> <span class="text-gray-300">kg search "golang"</span><br>
+                    <span class="kg-code-blue">→</span> <span class="text-gray-400">Found 23 notes in 12ms</span>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="kg-feature-card p-6 rounded-lg">
+                <code class="text-[#ffa657] text-sm">[[wiki::links]]</code>
+                <h3 class="text-lg font-semibold mt-3 mb-2 text-white">Wiki-Style Links</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Write <code class="text-[#79c0ff] bg-[#161b22] px-1.5 py-0.5 rounded">[[Note]]</code> to create bidirectional links. Build a knowledge graph automatically.</p>
+                <div class="mt-4 kg-terminal text-xs">
+                    <div class="kg-terminal-header">
+                        <div class="kg-terminal-dot bg-red-500"></div>
+                        <div class="kg-terminal-dot bg-yellow-500"></div>
+                        <div class="kg-terminal-dot bg-green-500"></div>
+                    </div>
+                    <span class="text-gray-300">See [[Go Patterns]] for details.</span><br>
+                    <span class="kg-code-blue">→</span> <span class="text-gray-400">Link created automatically</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demos -->
+    <section class="max-w-6xl mx-auto px-6 py-24">
+        <div class="border-l-2 border-[#30363d] pl-4 mb-12">
+            <h2 class="text-2xl font-semibold mb-2 text-white">Live Demos</h2>
+            <p class="text-gray-500 mono text-sm">See the CLI in action</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Demo 1 -->
+            <div class="kg-feature-card p-4 rounded-lg">
+                <div class="kg-terminal mb-3">
+                    <div class="kg-terminal-header">
+                        <div class="kg-terminal-dot bg-red-500"></div>
+                        <div class="kg-terminal-dot bg-yellow-500"></div>
+                        <div class="kg-terminal-dot bg-green-500"></div>
+                        <span class="ml-2 text-gray-500 text-xs">demo-1.gif</span>
+                    </div>
+                    <img src="/static/demo/cli-notes-1.gif" alt="Creating notes" class="w-full rounded" loading="lazy">
+                </div>
+                <p class="text-gray-400 text-sm mono">// Creating and managing notes from terminal</p>
+            </div>
+
+            <!-- Demo 2 -->
+            <div class="kg-feature-card p-4 rounded-lg">
+                <div class="kg-terminal mb-3">
+                    <div class="kg-terminal-header">
+                        <div class="kg-terminal-dot bg-red-500"></div>
+                        <div class="kg-terminal-dot bg-yellow-500"></div>
+                        <div class="kg-terminal-dot bg-green-500"></div>
+                        <span class="ml-2 text-gray-500 text-xs">demo-2.gif</span>
+                    </div>
+                    <img src="/static/demo/cli-notes-2.gif" alt="Full-text search" class="w-full rounded" loading="lazy">
+                </div>
+                <p class="text-gray-400 text-sm mono">// Full-text search across knowledge base</p>
+            </div>
+
+            <!-- Demo 3 -->
+            <div class="kg-feature-card p-4 rounded-lg">
+                <div class="kg-terminal mb-3">
+                    <div class="kg-terminal-header">
+                        <div class="kg-terminal-dot bg-red-500"></div>
+                        <div class="kg-terminal-dot bg-yellow-500"></div>
+                        <div class="kg-terminal-dot bg-green-500"></div>
+                        <span class="ml-2 text-gray-500 text-xs">demo-3.gif</span>
+                    </div>
+                    <img src="/static/demo/cli-notes-3.gif" alt="Wiki-style linking" class="w-full rounded" loading="lazy">
+                </div>
+                <p class="text-gray-400 text-sm mono">// Wiki-style linking with [[...]] syntax</p>
+            </div>
+
+            <!-- Demo 4 -->
+            <div class="kg-feature-card p-4 rounded-lg">
+                <div class="kg-terminal mb-3">
+                    <div class="kg-terminal-header">
+                        <div class="kg-terminal-dot bg-red-500"></div>
+                        <div class="kg-terminal-dot bg-yellow-500"></div>
+                        <div class="kg-terminal-dot bg-green-500"></div>
+                        <span class="ml-2 text-gray-500 text-xs">demo-4.gif</span>
+                    </div>
+                    <img src="/static/demo/cli-notes-4.gif" alt="Working across machines" class="w-full rounded" loading="lazy">
+                </div>
+                <p class="text-gray-400 text-sm mono">// Working across multiple machines via SSH</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation -->
+    <section id="install" class="max-w-6xl mx-auto px-6 py-24">
+        <div class="border-l-2 border-[#30363d] pl-4 mb-12">
+            <h2 class="text-2xl font-semibold mb-2 text-white">Installation</h2>
+            <p class="text-gray-500 mono text-sm">curl | bash. That's the whole install process.</p>
+        </div>
+
+        <div class="max-w-2xl mx-auto">
+            <div class="kg-terminal">
+                <div class="kg-terminal-header">
+                    <div class="kg-terminal-dot bg-red-500"></div>
+                    <div class="kg-terminal-dot bg-yellow-500"></div>
+                    <div class="kg-terminal-dot bg-green-500"></div>
+                    <span class="ml-2 text-gray-500">bash</span>
+                </div>
+                <span class="kg-code-green">$</span> <span class="text-gray-300">curl -fsSL https://raw.githubusercontent.com/momokii/go-cli-notes/main/scripts/install.sh | bash</span><br><br>
+                <span class="kg-code-blue">===</span> <span class="text-gray-300"> Knowledge Garden CLI - Installation</span><br>
+                <span class="kg-code-blue">===</span><br><br>
+                <span class="kg-code-purple">Detected platform:</span> <span class="text-gray-300">linux/amd64</span><br>
+                <span class="kg-code-purple">Installation directory:</span> <span class="text-gray-300">~/.local/bin</span><br>
+                <br>
+                <span class="kg-code-green">✓</span> <span class="text-gray-300">Download complete</span><br>
+                <span class="kg-code-green">✓</span> <span class="text-gray-300">Installation successful!</span><br>
+                <br>
+                <span class="kg-code-yellow">Next steps:</span><br>
+                <span class="text-gray-400">  1. kg-cli register</span><br>
+                <span class="text-gray-400">  2. kg-cli login</span><br>
+                <span class="text-gray-400">  3. kg-cli status</span>
+            </div>
+
+            <div class="mt-8 p-4 bg-[#161b22] border border-[#30363d] rounded-lg">
+                <div class="flex items-center gap-4 text-sm">
+                    <span class="text-gray-500 mono">// Supported platforms</span>
+                    <div class="flex gap-4">
+                        <span class="mono text-[#58a6ff]">linux/amd64</span>
+                        <span class="mono text-[#58a6ff]">linux/arm64</span>
+                        <span class="mono text-[#58a6ff]">darwin/amd64</span>
+                        <span class="mono text-[#58a6ff]">darwin/arm64</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#30363d] py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6 text-[#58a6ff]" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <span class="text-gray-400 mono">Knowledge Garden CLI</span>
+                </div>
+                <div class="flex items-center gap-6 text-gray-500 mono">
+                    <a href="https://github.com/momokii/go-cli-notes" target="_blank">GitHub</a>
+                    <a href="https://cli-notes-api.kelanach.xyz/" target="_blank">Cloud API</a>
+                    <a href="https://raw.githubusercontent.com/momokii/go-cli-notes/main/docs/INSTALL.md" target="_blank">Docs</a>
+                </div>
+                <div class="text-gray-600 mono text-xs">
+                    Built with Go + Fiber
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Style switcher -->
+    <div class="fixed bottom-4 right-4 bg-[#161b22] border border-[#30363d] rounded-lg p-2 text-xs mono">
+        <span class="text-gray-500">variant: </span>
+        <a href="/?style=1" class="text-gray-500 hover:text-[#58a6ff]">minimal</a>
+        <span class="text-gray-700 mx-1">|</span>
+        <a href="/?style=2" class="text-[#58a6ff] font-medium">technical</a>
+        <span class="text-gray-700 mx-1">|</span>
+        <a href="/?style=3" class="text-gray-500 hover:text-[#58a6ff]">playful</a>
+    </div>
+</body>
+</html>

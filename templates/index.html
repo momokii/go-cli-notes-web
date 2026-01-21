@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Garden CLI - Your Knowledge, Connected</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style scoped>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+        body {
+            font-family: 'Nunito', system-ui, sans-serif;
+        }
+
+        .kg-fun-shadow {
+            box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+        }
+        .kg-fun-shadow:hover {
+            box-shadow: 0 6px 0 0 rgba(0,0,0,0.15);
+        }
+
+        .kg-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .kg-feature-icon {
+            font-size: 3rem;
+        }
+
+        .kg-code {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            color: white;
+        }
+
+        .kg-step-number {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-3xl">🌿</span>
+                <span class="font-bold text-xl text-gray-800">Knowledge Garden (Go CLI Notes)</span>
+            </div>
+            <nav class="flex items-center gap-6">
+                <a href="#features" class="text-gray-600 hover:text-purple-600 font-semibold">Features</a>
+                <a href="#install" class="text-gray-600 hover:text-purple-600 font-semibold">Install</a>
+                <a href="https://github.com/momokii/go-cli-notes" target="_blank" class="text-gray-600 hover:text-purple-600 font-semibold">GitHub ⭐</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="max-w-6xl mx-auto px-6 py-20 text-center">
+        <div class="inline-block px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-sm font-bold mb-8 kg-bounce">
+            ✨ v1.0.0 is here!
+        </div>
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-gray-900">
+            Your Knowledge,<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Beautifully Connected</span> 🌸
+        </h1>
+        <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed font-semibold">
+            Capture ideas from your terminal, link them magically with <code class="bg-purple-100 px-2 py-1 rounded-lg">[[wiki links]]</code>, and watch your knowledge garden bloom! 🌱
+        </p>
+        <div class="flex items-center justify-center gap-4">
+            <a href="#install" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-2xl font-bold hover:opacity-90 transition kg-fun-shadow">
+                🚀 Get Started Free
+            </a>
+            <!-- <a href="https://cli-notes-api.kelanach.xyz/" class="px-8 py-4 bg-white text-purple-600 rounded-2xl font-bold border-2 border-purple-200 hover:border-purple-300 transition kg-fun-shadow">
+                ☁️ Try Cloud API
+            </a> -->
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="max-w-6xl mx-auto px-6 py-20">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold mb-4 text-gray-900">Why You'll Love It 💜</h2>
+            <p class="text-lg text-gray-600 font-semibold">Built with love for developers who think in terminals</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition border-2 border-purple-100">
+                <div class="kg-feature-icon mb-4">🌍</div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-900">Works Anywhere</h3>
+                <p class="text-gray-600 font-medium leading-relaxed">SSH into servers, hop between laptops, your notes follow you everywhere! No GUI? No problem! 💻</p>
+                <div class="mt-6 p-4 bg-purple-50 rounded-2xl">
+                    <div class="text-sm font-semibold text-purple-700 mb-2">Perfect for:</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white rounded-full text-sm text-purple-600">🖥️ SSH</span>
+                        <span class="px-3 py-1 bg-white rounded-full text-sm text-purple-600">💻 Laptops</span>
+                        <span class="px-3 py-1 bg-white rounded-full text-sm text-purple-600">🏢 Work</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition border-2 border-pink-100">
+                <div class="kg-feature-icon mb-4">🔍</div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-900">Super Fast Search</h3>
+                <p class="text-gray-600 font-medium leading-relaxed">PostgreSQL-powered search finds anything instantly! Typos? No worries, it understands! ⚡</p>
+                <div class="mt-6 p-4 bg-pink-50 rounded-2xl">
+                    <div class="text-sm font-semibold text-pink-700 mb-2">Search power:</div>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">✓</span> Full-text search
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">✓</span> Fuzzy matching
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">✓</span> Smart ranking
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition border-2 border-orange-100">
+                <div class="kg-feature-icon mb-4">🔗</div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-900">Magic Wiki Links</h3>
+                <p class="text-gray-600 font-medium leading-relaxed">Write <code class="bg-orange-100 px-2 py-1 rounded-lg text-orange-700">[[Like This]]</code> and notes link automatically! Watch your knowledge graph grow! 🌿</p>
+                <div class="mt-6 p-4 bg-orange-50 rounded-2xl">
+                    <div class="text-sm font-semibold text-orange-700 mb-2">Link example:</div>
+                    <div class="kg-code text-sm">
+                        Learning Go? Check<br>
+                        [[Go Patterns]] for<br>
+                        more details!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- See It In Action - Playful Version -->
+    <section class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-gray-900">See It In Action! 🎬</h2>
+                <p class="text-lg text-gray-600 font-semibold">Watch the magic happen with these live demos!</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Demo 1 -->
+                <div class="bg-white rounded-3xl p-6 shadow-lg hover:shadow-xl transition border-2 border-purple-100">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🔍</span>
+                        <h3 class="font-bold text-gray-900">Download and Register</h3>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden bg-gray-900 mb-4">
+                        <img src="/static/demo/cli-notes-1.gif" alt="Login notes" class="w-full" loading="lazy">
+                    </div>
+                    <p class="text-gray-600 font-medium">Create and login to your account and have access to notes everywhere</p>
+                </div>
+
+                <!-- Demo 2 -->
+                <div class="bg-white rounded-3xl p-6 shadow-lg hover:shadow-xl transition border-2 border-pink-100">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">📝</span>
+                        <h3 class="font-bold text-gray-900">Create Notes</h3>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden bg-gray-900 mb-4">
+                        <img src="/static/demo/cli-notes-2.gif" alt="Creating notes" class="w-full" loading="lazy">
+                    </div>
+                    <p class="text-gray-600 font-medium">Creating and managing notes from your terminal ✨</p>
+                </div>
+
+                <!-- Demo 3 -->
+                <div class="bg-white rounded-3xl p-6 shadow-lg hover:shadow-xl transition border-2 border-orange-100">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🔗</span>
+                        <h3 class="font-bold text-gray-900">Link Ideas</h3>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden bg-gray-900 mb-4">
+                        <img src="/static/demo/cli-notes-3.gif" alt="Wiki-style linking" class="w-full" loading="lazy">
+                    </div>
+                    <p class="text-gray-600 font-medium">Wiki-style linking with [[...]] syntax 🌿</p>
+                </div>
+
+                <!-- Demo 4 -->
+                <div class="bg-white rounded-3xl p-6 shadow-lg hover:shadow-xl transition border-2 border-purple-100">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🌍</span>
+                        <h3 class="font-bold text-gray-900">Work Anywhere</h3>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden bg-gray-900 mb-4">
+                        <img src="/static/demo/cli-notes-4.gif" alt="Working across machines" class="w-full" loading="lazy">
+                    </div>
+                    <p class="text-gray-600 font-medium">Working across multiple machines via SSH 💻</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works - Fun Version -->
+    <section class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">3 Steps to Get Started 🎯</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="kg-step-number mx-auto mb-4 text-xl">1</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">Install CLI</h3>
+                    <p class="text-gray-600 font-medium">One command, you're done! 🎉</p>
+                </div>
+                <div class="text-center">
+                    <div class="kg-step-number mx-auto mb-4 text-xl">2</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">Create Notes</h3>
+                    <p class="text-gray-600 font-medium">Capture ideas instantly! 💡</p>
+                </div>
+                <div class="text-center">
+                    <div class="kg-step-number mx-auto mb-4 text-xl">3</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-900">Link Ideas</h3>
+                    <p class="text-gray-600 font-medium">Use [[...]] to connect! 🔗</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation - Friendly -->
+    <section id="install" class="py-20">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border-2 border-purple-100">
+                <h2 class="text-3xl font-bold text-center mb-4 text-gray-900">Ready to Plant Your Garden? 🌱</h2>
+                <p class="text-center text-gray-600 mb-8">Just copy and paste this command into your terminal:</p>
+
+                <div class="kg-code text-center mb-8">
+                    <span class="text-purple-200">$</span> curl -fsSL https://raw.githubusercontent.com/momokii/go-cli-notes/main/scripts/install.sh | bash
+                </div>
+
+                <div class="text-center">
+                    <p class="text-gray-700 font-semibold mb-6">Works on all your favorite platforms! 🎨</p>
+                    <div class="flex justify-center gap-4 flex-wrap">
+                        <span class="px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full text-purple-700 font-semibold">🐧 Linux</span>
+                        <span class="px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full text-purple-700 font-semibold">🍎 macOS</span>
+                        <span class="px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 rounded-full text-purple-700 font-semibold">🪟 Windows</span>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-4 bg-yellow-50 rounded-2xl border border-yellow-200">
+                    <p class="text-center text-yellow-800 font-medium">
+                        ☀️ Pro tip: Base install will be using our cloud api services, you need connect to your self hosted api? just change the endpoint at install process!</a>!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-sm border-t border-gray-200 py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🌿</span>
+                    <span class="font-bold text-gray-800">Knowledge Garden CLI</span>
+                </div>
+                <div class="flex items-center gap-6 text-gray-600 font-semibold">
+                    <a href="https://github.com/momokii/go-cli-notes" target="_blank">GitHub</a>
+                    <a href="https://github.com/momokii/go-cli-notes/releases" target="_blank">Releases</a>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    Made with 💜 by developers, for developers
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
