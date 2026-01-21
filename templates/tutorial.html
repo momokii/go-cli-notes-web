@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation & Tutorials - Knowledge Garden CLI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style scoped>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+        body {
+            font-family: 'Nunito', system-ui, sans-serif;
+        }
+
+        .kg-fun-shadow {
+            box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+        }
+        .kg-fun-shadow:hover {
+            box-shadow: 0 6px 0 0 rgba(0,0,0,0.15);
+        }
+
+        .kg-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .kg-feature-icon {
+            font-size: 3rem;
+        }
+
+        .kg-code {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            color: white;
+        }
+
+        .kg-step-number {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="/" class="text-gray-600 hover:text-purple-600 font-semibold flex items-center gap-2">
+                    <span>&larr;</span>
+                    <span>Back to Home</span>
+                </a>
+                <div class="h-6 w-px bg-gray-300"></div>
+                <span class="font-bold text-xl text-gray-800">Documentation</span>
+            </div>
+            <nav class="flex items-center gap-6">
+                <a href="/tutorial" class="text-gray-600 hover:text-purple-600 font-semibold">Docs</a>
+                <a href="/tutorial/self-hosting" class="text-gray-600 hover:text-purple-600 font-semibold">Self-Hosting</a>
+                <a href="/tutorial/cli-reference" class="text-gray-600 hover:text-purple-600 font-semibold">CLI Guide</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="max-w-6xl mx-auto px-6 py-20 text-center">
+        <div class="inline-block px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-sm font-bold mb-8 kg-bounce">
+            📚 Knowledge Base
+        </div>
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 text-gray-900">
+            Documentation<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">& Tutorials</span> 🌸
+        </h1>
+        <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed font-semibold">
+            Everything you need to know about Knowledge Garden CLI - from self-hosting to mastering every command!
+        </p>
+    </section>
+
+    <!-- Tutorial Cards -->
+    <section class="max-w-6xl mx-auto px-6 py-20">
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Self-Hosting Card -->
+            <a href="/tutorial/self-hosting" class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition border-2 border-purple-100 block group">
+                <div class="kg-feature-icon mb-4 group-hover:scale-110 transition">🏠</div>
+                <h2 class="text-3xl font-bold mb-4 text-gray-900">Self-Hosting Guide</h2>
+                <p class="text-gray-600 font-medium leading-relaxed mb-6">
+                    Deploy your own Knowledge Garden API server. Complete setup instructions for Docker, PostgreSQL, and production deployment.
+                </p>
+                <div class="flex items-center gap-2 text-purple-600 font-semibold">
+                    <span>Get Started</span>
+                    <span class="group-hover:translate-x-1 transition">&rarr;</span>
+                </div>
+                <div class="mt-6 p-4 bg-purple-50 rounded-2xl">
+                    <div class="text-sm font-semibold text-purple-700 mb-2">You'll learn:</div>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">&check;</span> Quick Docker setup
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">&check;</span> Environment configuration
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">&check;</span> Security best practices
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">&check;</span> Production deployment
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">&check;</span> Troubleshooting tips
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- CLI Reference Card -->
+            <a href="/tutorial/cli-reference" class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition border-2 border-pink-100 block group">
+                <div class="kg-feature-icon mb-4 group-hover:scale-110 transition">⚡</div>
+                <h2 class="text-3xl font-bold mb-4 text-gray-900">CLI Reference</h2>
+                <p class="text-gray-600 font-medium leading-relaxed mb-6">
+                    Complete command documentation with examples. Master authentication, notes, tags, search, and wiki-style links.
+                </p>
+                <div class="flex items-center gap-2 text-pink-600 font-semibold">
+                    <span>Explore Commands</span>
+                    <span class="group-hover:translate-x-1 transition">&rarr;</span>
+                </div>
+                <div class="mt-6 p-4 bg-pink-50 rounded-2xl">
+                    <div class="text-sm font-semibold text-pink-700 mb-2">Covered topics:</div>
+                    <div class="space-y-2 text-sm text-gray-600">
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">&check;</span> Authentication
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">&check;</span> Note management
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">&check;</span> Tag system
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">&check;</span> Search & filters
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-green-500">&check;</span> Wiki links [[...]]
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="max-w-6xl mx-auto px-6 py-20">
+        <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border-2 border-orange-100">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Quick Links 🔗</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <a href="https://github.com/momokii/go-cli-notes" target="_blank" class="flex items-center gap-3 p-4 rounded-2xl bg-gray-50 hover:bg-purple-50 transition">
+                    <span class="text-2xl">📦</span>
+                    <div>
+                        <div class="font-bold text-gray-900">GitHub Repository</div>
+                        <div class="text-sm text-gray-600">Source code & issues</div>
+                    </div>
+                </a>
+                <a href="https://github.com/momokii/go-cli-notes/releases" target="_blank" class="flex items-center gap-3 p-4 rounded-2xl bg-gray-50 hover:bg-pink-50 transition">
+                    <span class="text-2xl">🚀</span>
+                    <div>
+                        <div class="font-bold text-gray-900">Releases</div>
+                        <div class="text-sm text-gray-600">Latest versions</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-sm border-t border-gray-200 py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🌿</span>
+                    <span class="font-bold text-gray-800">Knowledge Garden CLI</span>
+                </div>
+                <div class="flex items-center gap-6 text-gray-600 font-semibold">
+                    <a href="https://github.com/momokii/go-cli-notes" target="_blank">GitHub</a>
+                    <a href="https://github.com/momokii/go-cli-notes/releases" target="_blank">Releases</a>
+                    <a href="https://linkedin.com/in/kelanach" target="_blank">My Profile</a>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    Made with 💜 by developers, for developers
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

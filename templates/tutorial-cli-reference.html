@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLI Reference - Knowledge Garden CLI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style scoped>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+        body {
+            font-family: 'Nunito', system-ui, sans-serif;
+        }
+
+        .kg-fun-shadow {
+            box-shadow: 0 4px 0 0 rgba(0,0,0,0.1);
+        }
+        .kg-fun-shadow:hover {
+            box-shadow: 0 6px 0 0 rgba(0,0,0,0.15);
+        }
+
+        .kg-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .kg-feature-icon {
+            font-size: 3rem;
+        }
+
+        .kg-code {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            color: white;
+        }
+
+        .kg-code-inline {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 6px;
+            padding: 0.2rem 0.5rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            color: white;
+            font-size: 0.875rem;
+        }
+
+        .kg-step-number {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        details summary {
+            cursor: pointer;
+            list-style: none;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details[open] summary {
+            margin-bottom: 1rem;
+        }
+
+        .command-table th {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        .command-table tr:nth-child(even) {
+            background-color: #faf5ff;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="/" class="text-gray-600 hover:text-purple-600 font-semibold flex items-center gap-2">
+                    <span>&larr;</span>
+                    <span>Back to Home</span>
+                </a>
+                <div class="h-6 w-px bg-gray-300"></div>
+                <span class="font-bold text-xl text-gray-800">Documentation</span>
+            </div>
+            <nav class="flex items-center gap-6">
+                <a href="/tutorial" class="text-gray-600 hover:text-purple-600 font-semibold">Docs</a>
+                <a href="/tutorial/self-hosting" class="text-gray-600 hover:text-purple-600 font-semibold">Self-Hosting</a>
+                <a href="/tutorial/cli-reference" class="text-gray-600 hover:text-purple-600 font-semibold">CLI Guide</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="max-w-6xl mx-auto px-6 py-16 text-center">
+        <div class="inline-block px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-sm font-bold mb-6 kg-bounce">
+            ⚡ CLI Reference
+        </div>
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">
+            Complete Command<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Documentation</span> 📚
+        </h1>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            Master all Knowledge Garden CLI commands with examples and usage notes.
+        </p>
+
+        <!-- Quick Navigation -->
+        <div class="flex flex-wrap justify-center gap-2">
+            <a href="#authentication" class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold hover:bg-purple-200">Authentication</a>
+            <a href="#note-commands" class="px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-semibold hover:bg-pink-200">Notes</a>
+            <a href="#tag-commands" class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm font-semibold hover:bg-orange-200">Tags</a>
+            <a href="#analytics" class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold hover:bg-green-200">Analytics</a>
+            <a href="#wiki-links" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold hover:bg-blue-200">Wiki Links</a>
+            <a href="#workflows" class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm font-semibold hover:bg-yellow-200">Workflows</a>
+            <a href="#config" class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-semibold hover:bg-indigo-200">Config</a>
+        </div>
+    </section>
+
+    <!-- Authentication Commands -->
+    <section id="authentication" class="max-w-6xl mx-auto px-6 py-8">
+        <div class="bg-white rounded-3xl p-8 shadow-lg border-2 border-purple-100">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900">🔐 Authentication Commands</h2>
+
+            <!-- Register -->
+            <details class="border-2 border-purple-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-purple-50 hover:bg-purple-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli register</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Create a new account</span>
+                    </div>
+                    <span class="text-purple-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Create a new Knowledge Garden account with interactive prompts.</p>
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli register
+                    </div>
+                    <div class="text-sm text-gray-600 mb-2"><strong>Interactive prompts:</strong></div>
+                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                        <li><code class="bg-purple-100 px-1 rounded">Username:</code> Your username (3-100 characters, alphanumeric only)</li>
+                        <li><code class="bg-purple-100 px-1 rounded">Email:</code> Your email address</li>
+                        <li><code class="bg-purple-100 px-1 rounded">Password:</code> Your password (minimum 8 characters)</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- Login -->
+            <details class="border-2 border-purple-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-purple-50 hover:bg-purple-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli login</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Authenticate with credentials</span>
+                    </div>
+                    <span class="text-purple-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Log in to your Knowledge Garden account.</p>
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli login
+                    </div>
+                    <div class="text-sm text-gray-600 mb-2"><strong>Prompts for:</strong></div>
+                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
+                        <li>Email address</li>
+                        <li>Password</li>
+                    </ul>
+                </div>
+            </details>
+
+            <!-- Logout -->
+            <details class="border-2 border-purple-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-purple-50 hover:bg-purple-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli logout</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Clear stored credentials</span>
+                    </div>
+                    <span class="text-purple-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Log out and clear your stored authentication token.</p>
+                    <div class="kg-code text-sm">
+                        kg-cli logout
+                    </div>
+                </div>
+            </details>
+
+            <!-- Status -->
+            <details class="border-2 border-purple-100 rounded-2xl overflow-hidden">
+                <summary class="p-4 bg-purple-50 hover:bg-purple-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli status</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Check authentication status</span>
+                    </div>
+                    <span class="text-purple-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <p class="text-gray-600 mb-4">Display your current authentication status and API connection details.</p>
+                    <div class="kg-code text-sm">
+                        kg-cli status
+                    </div>
+                    <div class="mt-4 p-4 bg-gray-50 rounded-2xl text-sm font-mono text-gray-700">
+                        <div>Knowledge Garden CLI Status</div>
+                        <div>==========================</div>
+                        <div>API URL: http://localhost:8080</div>
+                        <div>Status: Authenticated</div>
+                        <div>Email: user@example.com</div>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Note Commands -->
+    <section id="note-commands" class="max-w-6xl mx-auto px-6 py-8">
+        <div class="bg-white rounded-3xl p-8 shadow-lg border-2 border-pink-100">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900">📝 Note Commands</h2>
+
+            <!-- List Notes -->
+            <details class="border-2 border-pink-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-pink-50 hover:bg-pink-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli note list</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Display all notes</span>
+                    </div>
+                    <span class="text-pink-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli note list [flags]
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="command-table w-full text-sm rounded-lg overflow-hidden">
+                            <thead>
+                                <tr>
+                                    <th class="p-2 text-left">Flag</th>
+                                    <th class="p-2 text-left">Short</th>
+                                    <th class="p-2 text-left">Description</th>
+                                    <th class="p-2 text-left">Default</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="p-2"><code>--page</code></td><td><code>-p</code></td><td>Page number</td><td>1</td></tr>
+                                <tr><td class="p-2"><code>--limit</code></td><td><code>-l</code></td><td>Notes per page (1-100)</td><td>20</td></tr>
+                                <tr><td class="p-2"><code>--search</code></td><td><code>-s</code></td><td>Search query</td><td>-</td></tr>
+                                <tr><td class="p-2"><code>--tag</code></td><td><code>-t</code></td><td>Filter by tag name/ID</td><td>-</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-600">
+                        <strong>Examples:</strong>
+                        <div class="kg-code text-sm mt-2">
+                            kg-cli note list<br>
+                            kg-cli note list --page 2 --limit 50<br>
+                            kg-cli note list --search "golang" --tag "programming"
+                        </div>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Get Note -->
+            <details class="border-2 border-pink-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-pink-50 hover:bg-pink-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli note get &lt;id&gt;</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Display a specific note</span>
+                    </div>
+                    <span class="text-pink-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli note get &lt;note-id&gt;
+                    </div>
+                    <p class="text-sm text-gray-600">Displays the full content and metadata of a note by its UUID.</p>
+                </div>
+            </details>
+
+            <!-- Create Note -->
+            <details class="border-2 border-pink-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-pink-50 hover:bg-pink-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli note create</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Create a new note</span>
+                    </div>
+                    <span class="text-pink-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli note create [flags]
+                    </div>
+                    <div class="overflow-x-auto mb-4">
+                        <table class="command-table w-full text-sm rounded-lg overflow-hidden">
+                            <thead>
+                                <tr>
+                                    <th class="p-2 text-left">Flag</th>
+                                    <th class="p-2 text-left">Short</th>
+                                    <th class="p-2 text-left">Description</th>
+                                    <th class="p-2 text-left">Default</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="p-2"><code>--title</code></td><td><code>-t</code></td><td>Note title (required)</td><td>-</td></tr>
+                                <tr><td class="p-2"><code>--content</code></td><td><code>-c</code></td><td>Note content</td><td>Empty</td></tr>
+                                <tr><td class="p-2"><code>--type</code></td><td><code>-T</code></td><td>Note type</td><td>note</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-sm text-gray-600 mb-2"><strong>Note types:</strong> <code>note</code>, <code>daily</code>, <code>meeting</code>, <code>idea</code></div>
+                    <div class="kg-code text-sm mt-2">
+                        kg-cli note create -t "My Note" -c "Content here"<br>
+                        kg-cli note create --title "Meeting" --type meeting
+                    </div>
+                </div>
+            </details>
+
+            <!-- Search Notes -->
+            <details class="border-2 border-pink-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-pink-50 hover:bg-pink-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli note search</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Full-text search</span>
+                    </div>
+                    <span class="text-pink-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli note search &lt;query&gt; [flags]
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Search notes using PostgreSQL full-text search with fuzzy matching.</p>
+                    <div class="kg-code text-sm mt-2">
+                        kg-cli note search "golang"<br>
+                        kg-cli note search "full-text search" --limit 10
+                    </div>
+                </div>
+            </details>
+
+            <!-- Daily Note -->
+            <details class="border-2 border-pink-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-pink-50 hover:bg-pink-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli note daily</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Get/create daily note</span>
+                    </div>
+                    <span class="text-pink-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli note daily [date]
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Get or create a daily note. Date format: YYYY-MM-DD or "today" (default).</p>
+                    <div class="kg-code text-sm mt-2">
+                        kg-cli note daily<br>
+                        kg-cli note daily 2026-01-04
+                    </div>
+                </div>
+            </details>
+
+            <!-- Update Note -->
+            <details class="border-2 border-pink-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-pink-50 hover:bg-pink-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli note update</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Update existing note</span>
+                    </div>
+                    <span class="text-pink-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli note update &lt;note-id&gt; [flags]
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-4 mb-4">
+                        <p class="text-yellow-800 text-sm"><strong>☀️ Interactive Mode:</strong> Without flags, prompts for changes and opens your <code>$EDITOR</code> (vim, nano, etc.) for content editing.</p>
+                    </div>
+                    <div class="overflow-x-auto mb-4">
+                        <table class="command-table w-full text-sm rounded-lg overflow-hidden">
+                            <thead>
+                                <tr>
+                                    <th class="p-2 text-left">Flag</th>
+                                    <th class="p-2 text-left">Short</th>
+                                    <th class="p-2 text-left">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="p-2"><code>--title</code></td><td><code>-t</code></td><td>New title (skips interactive)</td></tr>
+                                <tr><td class="p-2"><code>--content</code></td><td><code>-c</code></td><td>New content (skips interactive)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="kg-code text-sm mt-2">
+                        kg-cli note update &lt;uuid&gt;<br>
+                        kg-cli note update &lt;uuid&gt; -t "New Title"<br>
+                        kg-cli note update &lt;uuid&gt; --content "See [[Related Note]]"
+                    </div>
+                </div>
+            </details>
+
+            <!-- Delete Note -->
+            <details class="border-2 border-pink-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-pink-50 hover:bg-pink-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli note delete</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Delete a note</span>
+                    </div>
+                    <span class="text-pink-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli note delete &lt;note-id&gt;
+                    </div>
+                    <p class="text-sm text-red-600"><strong>⚠️ Requires confirmation.</strong> Deleted notes cannot be recovered.</p>
+                </div>
+            </details>
+
+            <!-- Links/Backlinks/Tags -->
+            <details class="border-2 border-pink-100 rounded-2xl overflow-hidden">
+                <summary class="p-4 bg-pink-50 hover:bg-pink-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli note links/backlinks/tags</code>
+                        <span class="ml-2 text-gray-700 font-semibold">View note relationships</span>
+                    </div>
+                    <span class="text-pink-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli note links &lt;note-id&gt;<br>
+                        kg-cli note backlinks &lt;note-id&gt;<br>
+                        kg-cli note tags &lt;note-id&gt;
+                    </div>
+                    <p class="text-sm text-gray-600">View outgoing wiki links, incoming backlinks, or associated tags.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Tag Commands -->
+    <section id="tag-commands" class="max-w-6xl mx-auto px-6 py-8">
+        <div class="bg-white rounded-3xl p-8 shadow-lg border-2 border-orange-100">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900">🏷️ Tag Commands</h2>
+
+            <details class="border-2 border-orange-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-orange-50 hover:bg-orange-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli tag list/create/update/delete</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Manage tags</span>
+                    </div>
+                    <span class="text-orange-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli tag list<br>
+                        kg-cli tag create "programming"<br>
+                        kg-cli tag update &lt;id&gt; "new-name"<br>
+                        kg-cli tag delete &lt;id&gt;
+                    </div>
+                    <p class="text-sm text-gray-600">List, create, update, or delete tags. Supports hierarchical tags like <code>dev/backend</code>.</p>
+                </div>
+            </details>
+
+            <details class="border-2 border-orange-100 rounded-2xl overflow-hidden">
+                <summary class="p-4 bg-orange-50 hover:bg-orange-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli tag add/remove/get</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Manage note-tag associations</span>
+                    </div>
+                    <span class="text-orange-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli tag add "tag-name" &lt;note-id&gt;<br>
+                        kg-cli tag remove "tag-name" &lt;note-id&gt;<br>
+                        kg-cli tag get "tag-name"
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">Add or remove tags from notes. Get all notes with a specific tag.</p>
+                    <p class="text-sm text-gray-600">Supports both tag names and tag IDs.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Analytics -->
+    <section id="analytics" class="max-w-6xl mx-auto px-6 py-8">
+        <div class="bg-white rounded-3xl p-8 shadow-lg border-2 border-green-100">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900">📊 Analytics Commands</h2>
+
+            <details class="border-2 border-green-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-green-50 hover:bg-green-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli stats</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Display statistics</span>
+                    </div>
+                    <span class="text-green-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli stats
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-2xl text-sm font-mono text-gray-700">
+                        <div>Knowledge Garden Statistics</div>
+                        <div>==========================</div>
+                        <div>Total Notes: 42</div>
+                        <div>Total Tags: 8</div>
+                        <div>Total Links: 15</div>
+                        <div>Total Words: 12,450</div>
+                        <div>Notes Created Today: 3</div>
+                    </div>
+                </div>
+            </details>
+
+            <details class="border-2 border-green-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-green-50 hover:bg-green-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli activity</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Recent activity</span>
+                    </div>
+                    <span class="text-green-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli activity [--limit | -l] &lt;n&gt;
+                    </div>
+                    <p class="text-sm text-gray-600">Display recent activity. Default: 10 items.</p>
+                </div>
+            </details>
+
+            <details class="border-2 border-green-100 rounded-2xl overflow-hidden">
+                <summary class="p-4 bg-green-50 hover:bg-green-100 transition flex items-center justify-between">
+                    <div>
+                        <code class="kg-code-inline">kg-cli trending</code>
+                        <span class="ml-2 text-gray-700 font-semibold">Frequently accessed notes</span>
+                    </div>
+                    <span class="text-green-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm mb-4">
+                        kg-cli trending [--limit | -l] &lt;n&gt;
+                    </div>
+                    <p class="text-sm text-gray-600">Display most frequently accessed notes. Default: 5 notes.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Wiki-Style Links -->
+    <section id="wiki-links" class="max-w-6xl mx-auto px-6 py-8">
+        <div class="bg-white rounded-3xl p-8 shadow-lg border-2 border-blue-100">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900">🔗 Wiki-Style Links</h2>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-6">
+                <p class="text-blue-800 font-semibold mb-2">🔑 Key Concept</p>
+                <p class="text-blue-700 text-sm">Connect notes automatically using <code class="bg-blue-100 px-2 py-1 rounded">[[Note Title]]</code> syntax. Links are created when you save a note that references existing notes.</p>
+            </div>
+
+            <h3 class="text-xl font-bold mb-4 text-gray-900">Syntax</h3>
+            <div class="kg-code text-sm mb-6">
+                This note is related to [[Another Note]].<br><br>
+                Multiple links: [[Note 1]], [[Note 2]], and [[Note 3]].<br><br>
+                Spaces work: [[My Long Note Title]].
+            </div>
+
+            <h3 class="text-xl font-bold mb-4 text-gray-900">How It Works</h3>
+            <div class="space-y-3 mb-6">
+                <div class="flex items-start gap-3 p-3 bg-blue-50 rounded-2xl">
+                    <span class="kg-step-number text-sm">1</span>
+                    <div class="text-sm text-gray-600">Create the target note first (e.g., "Go Programming Tips")</div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-blue-50 rounded-2xl">
+                    <span class="kg-step-number text-sm">2</span>
+                    <div class="text-sm text-gray-600">Create/update another note with <code class="bg-blue-100 px-1 rounded">[[Go Programming Tips]]</code> in content</div>
+                </div>
+                <div class="flex items-start gap-3 p-3 bg-blue-50 rounded-2xl">
+                    <span class="kg-step-number text-sm">3</span>
+                    <div class="text-sm text-gray-600">Link is created automatically! Use <code class="bg-blue-100 px-1 rounded">kg-cli note links</code> to verify</div>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-4">
+                <p class="text-yellow-800 text-sm"><strong>⚠️ Important:</strong> Target note must exist before creating the link. Use exact title (case-insensitive).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Common Workflows -->
+    <section id="workflows" class="max-w-6xl mx-auto px-6 py-8">
+        <div class="bg-white rounded-3xl p-8 shadow-lg border-2 border-yellow-100">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900">💡 Common Workflows</h2>
+
+            <details class="border-2 border-yellow-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-yellow-50 hover:bg-yellow-100 transition flex items-center justify-between">
+                    <div class="font-bold text-gray-900">Daily Journaling</div>
+                    <span class="text-yellow-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm">
+                        kg-cli note daily<br>
+                        kg-cli note list --limit 10<br>
+                        kg-cli stats
+                    </div>
+                </div>
+            </details>
+
+            <details class="border-2 border-yellow-100 rounded-2xl overflow-hidden mb-4">
+                <summary class="p-4 bg-yellow-50 hover:bg-yellow-100 transition flex items-center justify-between">
+                    <div class="font-bold text-gray-900">Research Project</div>
+                    <span class="text-yellow-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm">
+                        kg-cli note create -t "Project Research"<br>
+                        kg-cli note create -t "Topic 1" --type note<br>
+                        kg-cli note create -t "Topic 2" --type note<br>
+                        kg-cli note update &lt;id&gt; -c "See [[Topic 1]] for details"<br>
+                        kg-cli tag create "research"<br>
+                        kg-cli tag add "research" &lt;note-id&gt;
+                    </div>
+                </div>
+            </details>
+
+            <details class="border-2 border-yellow-100 rounded-2xl overflow-hidden">
+                <summary class="p-4 bg-yellow-50 hover:bg-yellow-100 transition flex items-center justify-between">
+                    <div class="font-bold text-gray-900">Meeting Notes</div>
+                    <span class="text-yellow-600 text-2xl">+</span>
+                </summary>
+                <div class="p-6">
+                    <div class="kg-code text-sm">
+                        kg-cli note create -t "Sprint Planning" --type meeting -c "Agenda..."<br>
+                        kg-cli note create -t "Action Items" -c "See [[Sprint Planning]]"
+                    </div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Configuration -->
+    <section id="config" class="max-w-6xl mx-auto px-6 py-8">
+        <div class="bg-white rounded-3xl p-8 shadow-lg border-2 border-indigo-100">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900">⚙️ Configuration</h2>
+
+            <h3 class="text-xl font-bold mb-4 text-gray-900">Config File Location</h3>
+            <div class="kg-code text-sm mb-6">
+                ~/.config/kg-cli/config.yaml
+            </div>
+
+            <h3 class="text-xl font-bold mb-4 text-gray-900">Environment Variables</h3>
+            <div class="overflow-x-auto">
+                <table class="command-table w-full text-sm rounded-lg overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th class="p-2 text-left">Variable</th>
+                            <th class="p-2 text-left">Description</th>
+                            <th class="p-2 text-left">Default</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="p-2"><code>KG_CLI_API_BASE_URL</code></td><td>API server URL</td><td>http://localhost:8080</td></tr>
+                        <tr><td class="p-2"><code>KG_CLI_API_TIMEOUT</code></td><td>Request timeout (sec)</td><td>30</td></tr>
+                        <tr><td class="p-2"><code>KG_CLI_EDITOR</code></td><td>External editor</td><td>$EDITOR or vi</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Common Errors -->
+    <section class="max-w-6xl mx-auto px-6 py-8">
+        <div class="bg-white rounded-3xl p-8 shadow-lg border-2 border-red-100">
+            <h2 class="text-3xl font-bold mb-6 text-gray-900">🚨 Common Errors & Solutions</h2>
+
+            <div class="space-y-4">
+                <div class="p-4 bg-red-50 rounded-2xl">
+                    <div class="font-bold text-red-800 mb-1">"not authenticated"</div>
+                    <div class="text-sm text-red-700">Run <code class="bg-red-100 px-1 rounded">kg-cli login</code></div>
+                </div>
+                <div class="p-4 bg-red-50 rounded-2xl">
+                    <div class="font-bold text-red-800 mb-1">"API error (status 401)"</div>
+                    <div class="text-sm text-red-700">Session expired. Run <code class="bg-red-100 px-1 rounded">kg-cli login</code> again</div>
+                </div>
+                <div class="p-4 bg-red-50 rounded-2xl">
+                    <div class="font-bold text-red-800 mb-1">"Failed to connect to API"</div>
+                    <div class="text-sm text-red-700">Check API is running or set <code class="bg-red-100 px-1 rounded">KG_CLI_API_BASE_URL</code></div>
+                </div>
+                <div class="p-4 bg-red-50 rounded-2xl">
+                    <div class="font-bold text-red-800 mb-1">"no notes found"</div>
+                    <div class="text-sm text-red-700">Create your first note with <code class="bg-red-100 px-1 rounded">kg-cli note create</code></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-sm border-t border-gray-200 py-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🌿</span>
+                    <span class="font-bold text-gray-800">Knowledge Garden CLI</span>
+                </div>
+                <div class="flex items-center gap-6 text-gray-600 font-semibold">
+                    <a href="https://github.com/momokii/go-cli-notes" target="_blank">GitHub</a>
+                    <a href="https://github.com/momokii/go-cli-notes/releases" target="_blank">Releases</a>
+                    <a href="https://linkedin.com/in/kelanach" target="_blank">My Profile</a>
+                </div>
+                <div class="text-gray-500 text-sm">
+                    Made with 💜 by developers, for developers
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

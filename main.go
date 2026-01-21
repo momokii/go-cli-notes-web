@@ -118,10 +118,40 @@ func setupRoutes(app *fiber.App, wd string) {
 	// Static files
 	app.Static("/static", staticPath)
 
-	// Main page - uses index3.html as the single template
+	// Main page - uses index.html as the single template
 	app.Get("/", func(c *fiber.Ctx) error {
 		c.Set("Content-Type", "text/html; charset=utf-8")
 		content, err := os.ReadFile(filepath.Join(templatesPath, "index.html"))
+		if err != nil {
+			return c.Status(fiber.StatusNotFound).SendString("Template not found")
+		}
+		return c.SendString(string(content))
+	})
+
+	// Tutorial hub
+	app.Get("/tutorial", func(c *fiber.Ctx) error {
+		c.Set("Content-Type", "text/html; charset=utf-8")
+		content, err := os.ReadFile(filepath.Join(templatesPath, "tutorial.html"))
+		if err != nil {
+			return c.Status(fiber.StatusNotFound).SendString("Template not found")
+		}
+		return c.SendString(string(content))
+	})
+
+	// Self-hosting tutorial
+	app.Get("/tutorial/self-hosting", func(c *fiber.Ctx) error {
+		c.Set("Content-Type", "text/html; charset=utf-8")
+		content, err := os.ReadFile(filepath.Join(templatesPath, "tutorial-self-hosting.html"))
+		if err != nil {
+			return c.Status(fiber.StatusNotFound).SendString("Template not found")
+		}
+		return c.SendString(string(content))
+	})
+
+	// CLI reference
+	app.Get("/tutorial/cli-reference", func(c *fiber.Ctx) error {
+		c.Set("Content-Type", "text/html; charset=utf-8")
+		content, err := os.ReadFile(filepath.Join(templatesPath, "tutorial-cli-reference.html"))
 		if err != nil {
 			return c.Status(fiber.StatusNotFound).SendString("Template not found")
 		}
