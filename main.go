@@ -158,6 +158,16 @@ func setupRoutes(app *fiber.App, wd string) {
 		return c.SendString(string(content))
 	})
 
+	// TUI guide
+	app.Get("/tutorial/tui", func(c *fiber.Ctx) error {
+		c.Set("Content-Type", "text/html; charset=utf-8")
+		content, err := os.ReadFile(filepath.Join(templatesPath, "tutorial-tui.html"))
+		if err != nil {
+			return c.Status(fiber.StatusNotFound).SendString("Template not found")
+		}
+		return c.SendString(string(content))
+	})
+
 	// 404 handler - must be last
 	app.Use(func(c *fiber.Ctx) error {
 		c.Set("Content-Type", "text/html; charset=utf-8")
